@@ -7,7 +7,7 @@ export default function Home() {
     <div className={styles.container}>
       <Head>
         <title>Toujours</title>
-        <meta name="description" content="Pour se parler jusqu'à la fin" />
+        <meta name="description" content="Pour se garder jusqu'à la fin" />
         <link rel="icon" href="/favicon.ico" />
       </Head>
 

@@ -22,7 +22,7 @@ export default function Home() {
         
         <div className={styles.header}>
 
-          <p>cacaboudin</p>
+          <h1>Pour se retrouver toujours</h1>
 
         </div>
 

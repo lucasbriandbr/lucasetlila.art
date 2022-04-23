@@ -10,7 +10,7 @@ export default function Home() {
 
       <Head>
 
-        <title>Monument à tous ces instants de bonheur, pour se retrouver toujours</title>
+        <title>Monument à tous ces instants de bonheur, pour se retrouver toujours :(</title>
 
         <meta name="description" content="Pour se garder jusqu'à la fin" />
 
@@ -22,7 +22,7 @@ export default function Home() {
         
         <div className={styles.header}>
 
-          <h2>Pour se retrouver toujours</h2>
+          <h3>Pour se retrouver toujours</h3>
 
         </div>
 

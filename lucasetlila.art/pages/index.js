@@ -6,8 +6,8 @@ export default function Home() {
   return ( 
     <div className={styles.container}>
       <Head>
-        <title><3</title>
-        <meta name="description" content="S'entendre jusqu'à la fin" />
+        <title>Toujours</title>
+        <meta name="description" content="Pour se parler jusqu'à la fin" />
         <link rel="icon" href="/favicon.ico" />
       </Head>
 

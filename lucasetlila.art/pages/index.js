@@ -1,8 +1,11 @@
 import Head from 'next/head'
 import Image from 'next/image'
 import styles from '../styles/Home.module.css'
+import { useState } from 'react'
 
 export default function Home() {
+
+  const [connected, setConnected] = useState(false)
 
   return ( 
 
@@ -23,6 +26,20 @@ export default function Home() {
         <div className={styles.header}>
 
           <h3>Pour se retrouver toujours</h3>
+          
+          {connected === true ?
+
+            <div className={styles.messagerieWidget}>
+
+            </div>
+
+          :
+
+            <div className={styles.connectWidget}>
+
+            </div>
+
+          }
 
         </div>
 

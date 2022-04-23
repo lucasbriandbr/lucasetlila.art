@@ -22,3 +22,11 @@ h3 {
   width: 100%;
   text-align: center;
 }
+
+@media (max-width: 460px) {
+
+  h3 {
+    display: none;
+  }
+  
+}

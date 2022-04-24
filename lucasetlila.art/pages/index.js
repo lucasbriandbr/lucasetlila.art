@@ -1,12 +1,18 @@
 import Head from 'next/head'
 import Image from 'next/image'
 import styles from '../styles/Home.module.css'
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import detectProvider from './components/walletconnect.jsx'
 
 export default function Home() {
 
   const [connected, setConnected] = useState(false)
+
+  useEffect(() => {
+    
+    window.solana.on("connect", () => {if(1===1){setConnected(true)}else{setConnected(false)}})
+
+  }, [])
 
   return ( 
 
@@ -32,7 +38,7 @@ export default function Home() {
 
             <div className={styles.messagerieWidget}>
 
-              <p>messagerie</p>
+              <p>Messagerie Active</p>
 
             </div>
 
@@ -40,7 +46,7 @@ export default function Home() {
 
             <div className={styles.connectWidget}>
 
-              <button className={styles.connectButton} onClick={() => (detectProvider())}>Connection to the chat</button>
+              <button className={styles.connectButton} onClick={() => (console.log(detectProvider()))}>Connection to the chat</button>
               
               <p className={styles.infoConnection}>Your configuration should be : Phantom Wallet, Solana Network, authentication with the 12 words seed phrase you wrote on a piece of paper;</p>
 

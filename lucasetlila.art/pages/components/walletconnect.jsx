@@ -1,21 +1,39 @@
-export default function detectProvider() {
+export default async function detectProvider() {
 
     if (typeof window !== 'undefined') {
-        console.log('You are on the browser')
-        // ✅ Can use window here
-    } else {
-        console.log('You are on the server')
-        // ⛔️ Don't use window here
-    }
         
-    // if ("solana" in window) {
-    //     const provider = window.solana
-    //     if (provider.isPhantom) {
-    //         console.log(provider)
-    //         return provider
-    //     }
-    // } else {
-    //     window.open("https://phantom.app/", "_blank")
-    // }
+        if ("solana" in window) {
+
+            const provider = window.solana
+
+            if (provider.isPhantom) {
+                
+                try {
+
+                    const resp = await window.solana.connect()
+
+                    return(true)
+                    
+                } catch (err) {
+
+                    // { code: 4001, message: 'User rejected the request.' }
+
+                    return(false)
+
+                }
+
+            }
+
+        } else {
+            
+            return false
+
+        }
+
+    } else {
+
+        console.error('You are on the server')
+
+    }
 
 }

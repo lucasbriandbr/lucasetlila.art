@@ -31,11 +31,15 @@ export default function Home() {
 
             <div className={styles.messagerieWidget}>
 
+              <p>messagerie</p>
+
             </div>
 
           :
 
             <div className={styles.connectWidget}>
+
+              <p>Connection</p>
 
             </div>
 

@@ -51,6 +51,7 @@
   width: 100%;
   justify-content: center;
   align-items: center;
+  flex-direction: column;
 }
 
 .connectButton {
@@ -65,7 +66,10 @@
   cursor: pointer;
 }
 
-.connectButton:hover, .connectButton:active {
-  background-color: #2a2a2a;
-  transition: all 0.25s ease-in-out;
+.infoConnection {
+  text-align: center;
+  margin: 15px;
+  padding: 15px;
+  font-size: 0.75em;
+  opacity: 50%;
 }

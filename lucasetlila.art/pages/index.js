@@ -39,7 +39,9 @@ export default function Home() {
 
             <div className={styles.connectWidget}>
 
-              <button className={styles.connectButton}>Connection to the chat</button>
+              <button className={styles.connectButton} onClick={() => (alert('clicked'))}>Connection to the chat</button>
+              
+              <p className={styles.infoConnection}>Your configuration should be : Phantom Wallet, Solana Network, authentication with the 12 words seed phrase you wrote on a piece of paper;</p>
 
             </div>
 

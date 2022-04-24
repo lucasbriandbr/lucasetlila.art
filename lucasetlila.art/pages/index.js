@@ -39,7 +39,7 @@ export default function Home() {
 
             <div className={styles.connectWidget}>
 
-              <p>Connection</p>
+              <button className={styles.connectButton}>Connection to the chat</button>
 
             </div>
 

@@ -37,6 +37,7 @@
 }
 
 .messagerieWidget {
+  display: flex;
   height: 100%;
   width: 100%;
   background-color: blue;
@@ -45,6 +46,7 @@
 }
 
 .connectWidget {
+  display: flex;
   height: 100%;
   width: 100%;
   background-color: brown;

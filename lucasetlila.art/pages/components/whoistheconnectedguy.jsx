@@ -1,7 +1,15 @@
 import { users } from "../constantes/users"
 
-export default async function woIsTheConnectedGuy(walletPubKey) {
-
+export default function whoIsTheConnectedGuy(walletPubKey) {
     
+    users.find((user) => {
+
+        if (walletPubKey === user.adress) {
+
+            console.log(user.name)
+        
+        }
+
+    })
 
 }

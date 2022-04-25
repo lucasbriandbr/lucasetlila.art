@@ -1,3 +1,5 @@
+import whoIsTheConnectedGuy from './whoistheconnectedguy'
+
 export default async function detectProvider() {
 
     if (typeof window !== 'undefined') {
@@ -11,6 +13,14 @@ export default async function detectProvider() {
                 try {
 
                     const resp = await window.solana.connect()
+
+                    window.solana.on("connect", () => {
+
+                        let publicKey = resp.publicKey.toString()
+
+                        whoIsTheConnectedGuy(publicKey)
+                        
+                    })
 
                     return(true)
                     

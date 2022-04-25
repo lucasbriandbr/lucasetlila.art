@@ -5,6 +5,7 @@ export default function ChatBox(props) {
 
     const [ error, setError ] = useState()
     const [ success, setSuccess ] = useState()
+    const [ theTimeout, setTheTimeout ] = useState(false)
 
     async function signMessage(message) {
         
@@ -14,15 +15,23 @@ export default function ChatBox(props) {
         
             const signedMessage = await window.solana.signMessage(encodedMessage, "utf8")
 
-            setSuccess('the user accepts the request')
+            setSuccess('Your message has been sent successfully, please wait')
+            
+            setTheTimeout(true)
 
             setError('')
+            
+            let successTimeout = setTimeout(() => {setSuccess(''), setTheTimeout(false)}, 3500)
 
         } catch(err) {
             
-            setError('the user rejected the request')
+            setError('An error has occured, please retry, please wait')
+            
+            setTheTimeout(true)
 
             setSuccess('')
+            
+            let errorTimeout = setTimeout(() => {setError(''), setTheTimeout(false)}, 3500)
 
         }
         
@@ -31,14 +40,20 @@ export default function ChatBox(props) {
     return (
 
         <div className={styles.ChatBox}>
-    
-            <p className={styles.infoConnection}>Hi and Welcome {props.name} ;)</p>
 
-            <button onClick={() => signMessage('je suis un trou de balle')}>Envoyer</button>
+            <div className={styles.render}></div>
+            
+            <div className={styles.inputAndSendButton}>
 
-            {error!==''?<p className={styles.infoError}>{error}</p>:''}
+                <input className={styles.messageInput} type="text" id="name" name="name" required minlength="4" size="10" placeholder={'Type a message, '+props.name}/>
+                
+                <button className={styles.sendingButton} onClick={() => signMessage('je suis un trou de balle')} disabled={theTimeout}>Send</button>
 
-            {success!==''?<p className={styles.infoSuccess}>{success}</p>:''}
+            </div>
+
+            {/* {error!==''?<div><p className={styles.infoError}>{error}</p></div>:''}
+
+            {success!==''?<div><p className={styles.infoSuccess}>{success}</p></div>:''} */}
         
         </div>
         

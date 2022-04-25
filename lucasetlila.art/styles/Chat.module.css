@@ -1,6 +1,8 @@
 .ChatBox {
     display: flex;
     flex-direction: column;
+    height: 100%;
+    width: 100%;
 }
 
 .infoConnection {
@@ -27,4 +29,51 @@
     font-size: 0.75em;
     opacity: 50%;
     color: lightgreen;
+}
+
+.sendingButton {
+    display: flex;
+    background-color: black;
+    color: white;
+    border: 0px;
+    cursor: pointer;
+    padding: 15px;
+    height: 100%;
+    align-items: center;
+    justify-content: center;
+}
+
+.messageInput {
+    display: flex;
+    background-color: black;
+    border: 0px;
+    color: white;
+    padding: 15px;
+    height: 100%;
+    width: 100%;
+    border-right: 1px solid white;
+    align-items: center;
+    justify-content: center;
+}
+
+.messageInput:active, .messageInput:focus {
+    border: 0px;
+    outline: none;
+    border-right: 1px solid white;
+}
+
+.inputAndSendButton {
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+    background-color: blue;
+    align-items: center;
+    justify-content: center;
+    border-top: 1px solid white;
+    min-height: 70px;
+}
+
+.render {
+    height: 100%;
+    background-color: blueviolet;
 }

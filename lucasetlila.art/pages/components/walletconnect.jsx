@@ -10,7 +10,7 @@ export default async function detectProvider() {
 
             if (provider.isPhantom) {
                 
-                // try {
+                try {
 
                     const resp = await window.solana.connect()
 
@@ -22,29 +22,29 @@ export default async function detectProvider() {
 
                     })
 
-                    // return(true)
+                    return(true)
                     
-                // } 
+                } 
                 
-                // catch (err) {
+                catch (err) {
 
-                //     // { code: 4001, message: 'User rejected the request.' }
+                    // { code: 4001, message: 'User rejected the request.' }
 
-                //     // return(false)
+                    return(false)
 
-                // }
+                }
 
             }
 
         } else {
             
-            // return false
+            return false
 
         }
 
     } else {
 
-        // console.error('You are on the server')
+        console.error('You are on the server')
 
     }
 

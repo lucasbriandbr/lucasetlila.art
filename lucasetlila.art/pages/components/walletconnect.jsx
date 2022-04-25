@@ -9,32 +9,18 @@ export default async function detectProvider() {
             const provider = window.solana
 
             if (provider.isPhantom) {
-                
-                try {
 
-                    const resp = await window.solana.connect()
+                const resp = await window.solana.connect()
 
-                    window.solana.on("connect", () => {
+                window.solana.on("connect", () => {
 
-                        let publicKey = resp.publicKey.toString()
+                    let publicKey = resp.publicKey.toString()
 
-                        console.log(publicKey)
+                    whoIsTheConnectedGuy(publicKey)
 
-                        // whoIsTheConnectedGuy(publicKey)
+                    console.log(true)
 
-                    })
-
-                    return(true)
-                    
-                } 
-                
-                catch (err) {
-
-                    // { code: 4001, message: 'User rejected the request.' }
-
-                    return(false)
-
-                }
+                })
 
             }
 

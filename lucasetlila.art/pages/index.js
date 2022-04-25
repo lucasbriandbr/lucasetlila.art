@@ -3,12 +3,16 @@ import Image from 'next/image'
 import styles from '../styles/Home.module.css'
 import { useState, useEffect } from 'react'
 import { users } from './constantes/users'
+import ChatBox from './components/ChatBox'
 
 export default function Home() {
 
   const [Connected, setConnected] = useState(false)
   const [Clicked, setClicked] = useState(false)
   const [UserName, setUserName] = useState('')
+
+  const [ error, setError ] = useState('')
+  const [ success, setSuccess ] = useState('')
   
   async function detectProvider() {
     
@@ -29,14 +33,12 @@ export default function Home() {
               let publicKey = resp.publicKey.toString()
             
               whoIsTheConnectedGuy(publicKey)
-
-              console.log(UserName)
             
             })
 
             setClicked(true)
 
-          } catch (err) {
+          } catch(err) {
 
           }
         
@@ -53,9 +55,15 @@ export default function Home() {
     users.find((user) => {
       
       if (walletPubKey === user.adress) {
+
+        setConnected(true)
         
         setUserName(user.name)
       
+      } else {
+
+        setError('You are not Lucas or Lila')
+
       }
     
     })
@@ -80,13 +88,13 @@ export default function Home() {
         
         <div className={styles.header}>
 
-          <h3>Pour se retrouver toujours</h3>
+          {/* <h3>Pour se retrouver toujours</h3> */}
           
           {Connected === true ?
 
             <div className={styles.messagerieWidget}>
 
-              <p>Messagerie Active</p>
+            {UserName !== "" ?<ChatBox name={UserName}/>:''}
 
             </div>
 
@@ -96,9 +104,9 @@ export default function Home() {
 
               <button className={styles.connectButton} onClick={() => (detectProvider())}>{Clicked===true?"Click to load the chat":"Click to load your provider"}</button>
               
-              <p className={styles.infoConnection}>Your configuration should be : Phantom Wallet, Solana Network, authentication with the 12 words seed phrase you wrote on a piece of paper.</p>
+              <p className={styles.infoConnection}>Your configuration should be : Phantom Wallet desktop navigator extension (Chrome, Brave, Siri,...), Solana Network, authentication with the 12 words seed phrase you wrote on a piece of paper.</p>
 
-              {UserName !== "" ?<p className={styles.infoConnection}>Hi and Welcome {UserName} ;)</p>:''}
+              {error!==''?<p className={styles.infoError}>{error}</p>:''}
 
             </div>
 

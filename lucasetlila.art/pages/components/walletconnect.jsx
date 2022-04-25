@@ -10,17 +10,21 @@ export default async function detectProvider() {
 
             if (provider.isPhantom) {
 
-                const resp = await window.solana.connect()
+                // const resp = await window.solana.connect()
 
-                window.solana.on("connect", () => {
+                // window.solana.on("connect", () => {
 
-                    let publicKey = resp.publicKey.toString()
+                //     let publicKey = resp.publicKey.toString()
 
-                    whoIsTheConnectedGuy(publicKey)
+                //     whoIsTheConnectedGuy(publicKey)
 
-                    console.log(true)
+                //     console.log(true)
 
-                })
+                // })
+
+            } else {
+
+                return false
 
             }
 
@@ -32,7 +36,7 @@ export default async function detectProvider() {
 
     } else {
 
-        console.error('You are on the server')
+        return false
 
     }
 

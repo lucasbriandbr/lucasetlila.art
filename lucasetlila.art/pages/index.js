@@ -2,13 +2,14 @@ import Head from 'next/head'
 import Image from 'next/image'
 import styles from '../styles/Home.module.css'
 import { useState, useEffect } from 'react'
-import whoIsTheConnectedGuy from './components/whoistheconnectedguy'
+import { users } from './constantes/users'
 
 export default function Home() {
 
-  const [connected, setConnected] = useState(false)
+  const [Connected, setConnected] = useState(false)
+  const [UserName, setUserName] = useState('')
   
-  function detectProvider() {
+  async function detectProvider() {
     
     if (typeof window !== 'undefined') {
       
@@ -16,25 +17,45 @@ export default function Home() {
         
         const provider = window.solana
         
-        if (provider.isPhantom) { 
+        if (provider.isPhantom) {
+
+          try {
+
+            const resp = await window.solana.connect()
           
-          // const resp = await window.solana.connect()
-          
-          // window.solana.on("connect", () => {
+            window.solana.on("connect", () => {
+              
+              let publicKey = resp.publicKey.toString()
             
-          //     let publicKey = resp.publicKey.toString()
-          
-          //     whoIsTheConnectedGuy(publicKey)
-          
-          //     console.log(true)
-          
-          // })
+              whoIsTheConnectedGuy(publicKey)
+
+              console.log(UserName)
+            
+            })
+
+          } catch (err) {
+
+          }
         
         }
 
       }
 
     }
+
+  }
+  
+  function whoIsTheConnectedGuy(walletPubKey) {
+    
+    users.find((user) => {
+      
+      if (walletPubKey === user.adress) {
+        
+        setUserName(user.name)
+      
+      }
+    
+    })
 
   }
 
@@ -58,7 +79,7 @@ export default function Home() {
 
           <h3>Pour se retrouver toujours</h3>
           
-          {connected === true ?
+          {Connected === true ?
 
             <div className={styles.messagerieWidget}>
 
@@ -70,9 +91,11 @@ export default function Home() {
 
             <div className={styles.connectWidget}>
 
-              <button className={styles.connectButton} onClick={() => (console.log('here we go'))}>Double click to load the chat</button>
+              <button className={styles.connectButton} onClick={() => (detectProvider())}>Double click to load the chat</button>
               
-              <p className={styles.infoConnection}>Your configuration should be : Phantom Wallet, Solana Network, authentication with the 12 words seed phrase you wrote on a piece of paper;</p>
+              <p className={styles.infoConnection}>Your configuration should be : Phantom Wallet, Solana Network, authentication with the 12 words seed phrase you wrote on a piece of paper.</p>
+
+              {UserName !== "" ?<p className={styles.infoConnection}>You are {UserName}</p>:''}
 
             </div>
 

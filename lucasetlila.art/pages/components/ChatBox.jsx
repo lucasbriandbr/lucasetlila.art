@@ -45,7 +45,7 @@ export default function ChatBox(props) {
             
             <div className={styles.inputAndSendButton}>
 
-                <input className={styles.messageInput} type="text" id="name" name="name" required minLength="4" size="10" placeholder={'Type a message, '+props.name}/>
+                <input className={styles.messageInput} type="text" id="name" name="name" required placeholder={'Type a message, '+props.name}/>
                 
                 <button className={styles.sendingButton} onClick={() => signMessage('je suis un trou de balle')} disabled={theTimeout}>Send</button>
 

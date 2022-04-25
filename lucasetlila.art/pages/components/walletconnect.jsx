@@ -22,21 +22,9 @@ export default async function detectProvider() {
 
                 // })
 
-            } else {
-
-                return false
-
             }
 
-        } else {
-            
-            return false
-
         }
-
-    } else {
-
-        return false
 
     }
 

@@ -16,7 +16,7 @@ export default function Home() {
         
         const provider = window.solana
         
-        if (provider.isPhantom) {
+        if (provider.isPhantom) { 
           
           // const resp = await window.solana.connect()
           

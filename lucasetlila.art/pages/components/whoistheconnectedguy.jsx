@@ -1,15 +1,15 @@
-// import { users } from "../constantes/users"
+import { users } from "../constantes/users"
 
 export default function whoIsTheConnectedGuy(walletPubKey) {
     
-    // users.find((user) => {
+    users.find((user) => {
 
-    //     if (walletPubKey === user.adress) {
+        if (walletPubKey === user.adress) {
 
-    //         console.log(user.name)
+            console.log(user.name)
         
-    //     }
+        }
 
-    // })
+    })
 
 }

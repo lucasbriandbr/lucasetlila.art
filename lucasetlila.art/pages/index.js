@@ -7,6 +7,7 @@ import { users } from './constantes/users'
 export default function Home() {
 
   const [Connected, setConnected] = useState(false)
+  const [Clicked, setClicked] = useState(false)
   const [UserName, setUserName] = useState('')
   
   async function detectProvider() {
@@ -32,6 +33,8 @@ export default function Home() {
               console.log(UserName)
             
             })
+
+            setClicked(true)
 
           } catch (err) {
 
@@ -91,11 +94,11 @@ export default function Home() {
 
             <div className={styles.connectWidget}>
 
-              <button className={styles.connectButton} onClick={() => (detectProvider())}>Double click to load the chat</button>
+              <button className={styles.connectButton} onClick={() => (detectProvider())}>{Clicked===true?"Click to load the chat":"Click to load your provider"}</button>
               
               <p className={styles.infoConnection}>Your configuration should be : Phantom Wallet, Solana Network, authentication with the 12 words seed phrase you wrote on a piece of paper.</p>
 
-              {UserName !== "" ?<p className={styles.infoConnection}>You are {UserName}</p>:''}
+              {UserName !== "" ?<p className={styles.infoConnection}>Hi and Welcome {UserName} ;)</p>:''}
 
             </div>
 

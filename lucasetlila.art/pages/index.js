@@ -3,6 +3,7 @@ import Image from 'next/image'
 import styles from '../styles/Home.module.css'
 import { useState, useEffect } from 'react'
 import detectProvider from './components/walletconnect.jsx'
+import whoIsTheConnectedGuy from './components/whoistheconnectedguy'
 
 export default function Home() {
 
@@ -40,7 +41,7 @@ export default function Home() {
 
             <div className={styles.connectWidget}>
 
-              <button className={styles.connectButton} onClick={() => (detectProvider())}>Double click to load the chat</button>
+              <button className={styles.connectButton} onClick={() => (console.log('here we go'))}>Double click to load the chat</button>
               
               <p className={styles.infoConnection}>Your configuration should be : Phantom Wallet, Solana Network, authentication with the 12 words seed phrase you wrote on a piece of paper;</p>
 

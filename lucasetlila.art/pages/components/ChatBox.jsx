@@ -16,9 +16,13 @@ export default function ChatBox(props) {
 
             setSuccess('the user accepts the request')
 
+            setError('')
+
         } catch(err) {
             
             setError('the user rejected the request')
+
+            setSuccess('')
 
         }
         
@@ -30,7 +34,11 @@ export default function ChatBox(props) {
     
             <p className={styles.infoConnection}>Hi and Welcome {props.name} ;)</p>
 
-            <button onClick={() => signMessage('je suis un trou de balle')}>Coucou toi</button>
+            <button onClick={() => signMessage('je suis un trou de balle')}>Envoyer</button>
+
+            {error!==''?<p className={styles.infoError}>{error}</p>:''}
+
+            {success!==''?<p className={styles.infoSuccess}>{success}</p>:''}
         
         </div>
         

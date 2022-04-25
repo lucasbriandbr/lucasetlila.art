@@ -18,7 +18,9 @@ export default async function detectProvider() {
 
                         let publicKey = resp.publicKey.toString()
 
-                        whoIsTheConnectedGuy(publicKey)
+                        console.log(publicKey)
+
+                        // whoIsTheConnectedGuy(publicKey)
 
                     })
 

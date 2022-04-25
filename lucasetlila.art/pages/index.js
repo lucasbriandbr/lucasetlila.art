@@ -2,7 +2,7 @@ import Head from 'next/head'
 import Image from 'next/image'
 import styles from '../styles/Home.module.css'
 import { useState, useEffect } from 'react'
-import detectProvider from './components/walletconnect.jsx'
+// import detectProvider from './components/walletconnect.jsx'
 import whoIsTheConnectedGuy from './components/whoistheconnectedguy'
 
 export default function Home() {

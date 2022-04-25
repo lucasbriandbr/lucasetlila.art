@@ -1,6 +1,6 @@
 import whoIsTheConnectedGuy from './whoistheconnectedguy'
 
-export default async function detectProvider() {
+export default function detectProvider() {
 
     if (typeof window !== 'undefined') {
         

@@ -1,4 +1,4 @@
-import { users } from "../constantes/users"
+// import { users } from "../constantes/users"
 
 export default function whoIsTheConnectedGuy(walletPubKey) {
     

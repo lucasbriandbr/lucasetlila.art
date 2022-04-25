@@ -6,6 +6,7 @@ export default function ChatBox(props) {
     const [ error, setError ] = useState()
     const [ success, setSuccess ] = useState()
     const [ theTimeout, setTheTimeout ] = useState(false)
+    const [ message, setMessage ] = useState('')
 
     async function signMessage(message) {
         
@@ -47,7 +48,7 @@ export default function ChatBox(props) {
 
                 <input className={styles.messageInput} type="text" id="name" name="name" required placeholder={'Type a message, '+props.name}/>
                 
-                <button className={styles.sendingButton} onClick={() => signMessage('je suis un trou de balle')} disabled={theTimeout}>Send</button>
+                <button className={styles.sendingButton} onClick={() => {setMessage(document.getElementById('name').value), signMessage(document.getElementById('name').value)}} disabled={theTimeout}>Send</button>
 
             </div>
 

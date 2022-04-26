@@ -101,9 +101,75 @@
     flex-direction: column;
     align-items: center;
     height: 100%;
+    overflow-y: scroll;
+    scrollbar-color: rebeccapurple;
+    scrollbar-width: 0px;
+    text-align: center;
 }
 
 .disabled {
     color: grey;
     cursor: not-allowed;
+}
+
+#render {
+    display: flex;
+}
+
+.sectionMessage {
+    display: flex;
+    width: 100%;
+    align-items: center;
+}
+
+.sectionDuMessage {
+    display: flex;
+    flex-direction: column;
+}
+
+.youSendIt {
+    text-align: end;
+    align-items: flex-end;
+    width: 100%;
+    padding-left: 45%;
+    margin: 15px;
+}
+
+.youDontSendIt {
+    text-align: start;
+    align-items: flex-start;
+    width: 100%;
+    padding-right: 45%;
+    margin: 15px;
+}
+
+.youSendIt p:first-child {
+    border: 1px solid white;
+    padding: 15px;
+    border-radius: 15px;
+    font-size: 0.75em;
+}
+
+.youSendIt p:first-child::before {
+    height: 15px;
+    width: 15px;
+    background-color: red;
+}
+
+.youDontSendIt p:first-child {
+    border: 1px solid #b666db;
+    padding: 15px;
+    border-radius: 15px;
+    font-size: 0.75em;
+}
+
+.youDontSendIt p:first-child::after {
+    height: 15px;
+    width: 15px;
+    background-color: red;
+}
+
+.paragrapheInfoDate {
+    color: gray;
+    font-size: 0.65em;
 }

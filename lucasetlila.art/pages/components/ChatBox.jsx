@@ -1,12 +1,60 @@
 import styles from '../../styles/Chat.module.css'
 import { useState, useEffect } from 'react'
+import { db } from '../src/firebase'
+import {collection, addDoc, Timestamp, query, orderBy, onSnapshot} from 'firebase/firestore'
 
 export default function ChatBox(props) {
+
+    const [openAddModal, setOpenAddModal] = useState(false)
+    const [tasks, setTasks] = useState([])
 
     const [ error, setError ] = useState('')
     const [ success, setSuccess ] = useState('')
     const [ theTimeout, setTheTimeout ] = useState(false)
-    const [ message, setMessage ] = useState('')
+
+    useEffect(() => {
+        const q = query(collection(db, 'messages'), orderBy('date', 'asc'))
+        onSnapshot(q, (querySnapshot) => {
+          setTasks(querySnapshot.docs.map(doc => (
+             
+            <div key={doc.get('date')} className={styles.sectionMessage}>
+                
+                <div className={(props.name===doc.get('sender'))?`${styles.youSendIt}`:`${styles.youDontSendIt}`}>
+
+                    <p>{doc.get('text')}</p>
+
+                    <p className={styles.paragrapheInfoDate}>{doc.get('sender')}, {doc.get('date').toDate().toUTCString()}</p>
+
+                </div>
+
+            </div>
+
+          )))
+        })
+        // document.getElementById(`${styles.render}`).lastChild.focus()
+    },[])
+    
+    const handleSubmit = async (e) => {
+
+        try {
+
+            // console.log('message : ',document.getElementById('name').value)
+            // console.log('sender : ',props.name)
+            // console.log('date : ',Timestamp.now().toDate())
+
+            await addDoc(collection(db, 'messages'), {
+                text: document.getElementById('name').value,
+                sender: props.name,
+                date: Timestamp.now()
+            })
+
+        } catch (err) {
+
+            alert(err)
+
+        }
+
+    }
 
     async function signMessage(message) {
         
@@ -21,12 +69,14 @@ export default function ChatBox(props) {
             let errorTimeout = setTimeout(() => {setError(''), setTheTimeout(false)}, 3500)
 
         } else {
-        
+
             try {
     
                 const encodedMessage = new TextEncoder().encode(message)
             
                 const signedMessage = await window.solana.signMessage(encodedMessage, "utf8")
+                
+                handleSubmit()
     
                 setSuccess('Your message has been sent successfully, please wait')
                 
@@ -58,11 +108,13 @@ export default function ChatBox(props) {
 
         <div className={styles.ChatBox}>
 
-            <div className={styles.render}>
+            <div className={styles.render} id={styles.render}>
 
                 {error!==''?<div className={styles.errorContainer}><p className={styles.infoError}>{error}</p></div>:''}
 
                 {success!==''?<div className={styles.successContainer}><p className={styles.infoSuccess}>{success}</p></div>:''}
+
+                {tasks}
             
             </div>
             
@@ -70,7 +122,7 @@ export default function ChatBox(props) {
 
                 <input className={styles.messageInput} type="text" id="name" name="name" required placeholder={'Type a message, '+props.name}/>
                 
-                <button className={ `${styles.sendingButton} ${theTimeout? `${styles.disabled}`:`` }` } onClick={() => {setMessage(document.getElementById('name').value), signMessage(document.getElementById('name').value)}} disabled={theTimeout}>Send</button>
+                <button className={ `${styles.sendingButton} ${theTimeout? `${styles.disabled}`:`` }` } onClick={() => {(document.getElementById('name').value), signMessage(document.getElementById('name').value)}} disabled={theTimeout}>Send</button>
 
             </div>
         

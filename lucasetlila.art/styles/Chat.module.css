@@ -14,21 +14,44 @@
 }
 
 .infoError {
-    text-align: center;
-    margin: 15px;
-    padding: 15px;
+    display: flex;
+    border-radius: 15px;
     font-size: 0.75em;
-    opacity: 50%;
-    color: red;
+    padding: 15px;
+    background-color: rgba(255, 0, 0, 0.75);
+    margin: 30px;
+    width: 100%;
 }
 
 .infoSuccess {
-    text-align: center;
-    margin: 15px;
-    padding: 15px;
+    display: flex;
+    border-radius: 15px;
     font-size: 0.75em;
-    opacity: 50%;
-    color: lightgreen;
+    padding: 15px;
+    background-color: rgba(0, 128, 0, 0.75);
+    margin: 30px;
+    width: 100%;
+    text-align: center;
+}
+
+.successContainer {
+    display: flex;
+    position: absolute;
+    max-width: 460px;
+    width: 100%;
+    text-align: center;
+    align-items: center;
+    justify-content: center;
+}
+
+.errorContainer {
+    display: flex;
+    position: absolute;
+    max-width: 460px;
+    width: 100%;
+    text-align: center;
+    align-items: center;
+    justify-content: center;
 }
 
 .sendingButton {
@@ -74,6 +97,13 @@
 }
 
 .render {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
     height: 100%;
-    background-color: blueviolet;
+}
+
+.disabled {
+    color: grey;
+    cursor: not-allowed;
 }

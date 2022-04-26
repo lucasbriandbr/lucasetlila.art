@@ -131,7 +131,7 @@
     text-align: end;
     align-items: flex-end;
     width: 100%;
-    padding-left: 45%;
+    padding-left: 55%;
     margin: 15px;
 }
 
@@ -139,7 +139,7 @@
     text-align: start;
     align-items: flex-start;
     width: 100%;
-    padding-right: 45%;
+    padding-right: 55%;
     margin: 15px;
 }
 

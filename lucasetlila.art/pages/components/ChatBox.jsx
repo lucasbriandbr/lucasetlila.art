@@ -1,19 +1,19 @@
 import styles from '../../styles/Chat.module.css'
 import { useState, useEffect } from 'react'
 import { db } from '../src/firebase'
-import {collection, addDoc, Timestamp, query, orderBy, onSnapshot} from 'firebase/firestore'
+import {collection, addDoc, Timestamp, query, orderBy, onSnapshot} from '@firebase/firestore'
 
 export default function ChatBox(props) {
 
     const [openAddModal, setOpenAddModal] = useState(false)
     const [tasks, setTasks] = useState([])
+    const [ nameBro, setNameBro ] = useState(props.name)
 
     const [ error, setError ] = useState('')
     const [ success, setSuccess ] = useState('')
     const [ theTimeout, setTheTimeout ] = useState(false)
 
     useEffect(() => {
-        const [ nameBro, setNameBro ] = useState(props.name)
         const q = query(collection(db, 'messages'), orderBy('date', 'asc'))
         onSnapshot(q, (querySnapshot) => {
           setTasks(querySnapshot.docs.map(doc => (

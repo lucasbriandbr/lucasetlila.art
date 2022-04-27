@@ -7,7 +7,7 @@ import ChatBox from './components/ChatBox'
 
 //ajout des données de Lucas et Lila
 import { db } from './src/firebase'
-import {collection, addDoc, Timestamp, query, onSnapshot, updateDoc} from '@firebase/firestore'
+import {collection, addDoc, Timestamp, query, onSnapshot, updateDoc, doc} from '@firebase/firestore'
 
 export default function Home() {
 
@@ -25,13 +25,13 @@ export default function Home() {
 
   const [ lilaAdress, setLilaAdress ] = useState('')
   const [ lilaTel, setLilaTel ] = useState('')
-  const [ lilaLastConnexion, setLilaLastConnexion ] = useState()
+  const [ lilaLastConnexion, setLilaLastConnexion ] = useState('')
 
   //états des informations de Mr.Briand
 
   const [ lucasAdress, setLucasAdress ] = useState('')
   const [ lucasTel, setLucasTel ] = useState('')
-  const [ lucasLastConnexion, setLucasLastConnexion ] = useState()
+  const [ lucasLastConnexion, setLucasLastConnexion ] = useState('')
 
   function openLucas() {
     setLucasState(!lucasState)
@@ -44,29 +44,36 @@ export default function Home() {
   }
 
   useEffect(()=>{
-    // const q = query(collection(db, 'lila'))
-    // onSnapshot(q, (querySnapshot) => {
-    //   querySnapshot.docs.map(doc => (
-    //     console.log(doc.get('adress')),
-    //     console.log(doc.get('tel')),
-    //     console.log(doc.get('lastconnexion'))
-    //   ))
-    // })
+    const q = query(collection(db, 'lila'))
+    onSnapshot(q, (querySnapshot) => {
+      querySnapshot.docs.map(doc => (
+        setLilaAdress(doc.get('adress')),
+        setLilaTel(doc.get('tel')),
+        setLilaLastConnexion(doc.get('lastconnexion'))
+      ))
+    })
+    const r = query(collection(db, 'lucas'))
+    onSnapshot(r, (querySnapshot) => {
+      querySnapshot.docs.map(doc => (
+        setLucasAdress(doc.get('adress')),
+        setLucasTel(doc.get('tel')),
+        setLucasLastConnexion(doc.get('lastconnexion'))
+      ))
+    })
   }, [])
 
   async function updateLastConnexion(userToUpdate) {
     if(userToUpdate==='Lila'){
-      const q = query(collection(db, 'lila'))
+      const washingtonRef = doc(db, "lila", "1");
+      await updateDoc(washingtonRef, {
+        lastconnexion: Timestamp.now().toDate().toUTCString()
+      });
     }else{
-      const q = query(collection(db, 'lucas'))
+      const washingtonRef = doc(db, "lucas", "1");
+      await updateDoc(washingtonRef, {
+        lastconnexion: Timestamp.now().toDate().toUTCString()
+      });
     }
-    onSnapshot(q, (querySnapshot) => {
-      querySnapshot.docs.map(doc => (
-        console.log(doc.get('adress')),
-        console.log(doc.get('tel')),
-        console.log(doc.get('lastconnexion'))
-      ))
-    })
   }
   
   async function detectProvider() {
@@ -147,14 +154,22 @@ export default function Home() {
           <>
 
             <div className={`${styles.LilaInfos} ${!lilaState?styles.displayNone:''}`}>
+
+              <p>{lilaAdress}</p>
+
+              <p>{lilaTel}</p>
               
-              <div><p>Infos Lila</p></div>
+              <p>{lilaLastConnexion}</p>
           
             </div>
             
             <div className={`${styles.LucasInfos} ${!lucasState?styles.displayNone:''}`}>
+
+              <p>{lucasAdress}</p>
+
+              <p>{lucasTel}</p>
               
-              <div><p>Lucas Infos</p></div>
+              <p>{lucasLastConnexion}</p>
             
             </div>
         

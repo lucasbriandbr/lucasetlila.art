@@ -1,6 +1,6 @@
 import styles from '../../styles/Chat.module.css'
 import { useState, useEffect } from 'react'
-import { db } from '../src/firebase'
+import { db } from '../src/firebase.js'
 import {collection, addDoc, Timestamp, query, orderBy, onSnapshot} from '@firebase/firestore'
 
 export default function ChatBox(props) {

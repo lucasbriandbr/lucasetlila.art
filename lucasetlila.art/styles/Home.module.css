@@ -119,9 +119,29 @@
 }
 
 .LucasInfos {
-
+  display: flex;
+  flex-direction: row;
+  margin-bottom: 30px;
+  width: 100%;
+  max-width: 460px;
+  border: 1px solid white;
+  position: absolute;
+  bottom: 0px;
+  background-color: black;
 }
 
 .LilaInfos {
+  display: flex;
+  flex-direction: row;
+  margin-bottom: 30px;
+  width: 100%;
+  max-width: 460px;
+  border: 1px solid white;
+  position: absolute;
+  bottom: 0px;
+  background-color: black;
+}
 
+.displayNone {
+  display: none;
 }

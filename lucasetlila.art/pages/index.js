@@ -99,22 +99,26 @@ export default function Home() {
 
       <div className={styles.container}>
         
-        {Connected===true?
+        {Connected===true&&UserName==='Lucas'||Connected===true&&UserName==='Lila'?
           <>
 
-            <div className={styles.LilaInfos}>
+            <div className={`${styles.LilaInfos} ${!lilaState?styles.displayNone:''}`}>
+
+              <p>Lila Section</p>
           
             </div>
             
-            <div className={styles.LucasInfos}>
+            <div className={`${styles.LucasInfos} ${!lucasState?styles.displayNone:''}`}>
+
+              <p>Lucas Section</p>
             
             </div>
         
             <div className={styles.divDeBoutons}>
             
-              <p className={styles.boutonContact} onClick={()=>openLila()}>Lila, {lilaState.toString()}</p>
+              <p className={styles.boutonContact} onClick={()=>openLila()}>Lila</p>
 
-              <p className={styles.boutonContact} onClick={()=>openLucas()}>Lucas, {lucasState.toString()}</p>
+              <p className={styles.boutonContact} onClick={()=>openLucas()}>Lucas</p>
             
             </div>
 

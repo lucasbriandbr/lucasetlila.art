@@ -7,6 +7,7 @@ export default function ChatBox(props) {
 
     const [openAddModal, setOpenAddModal] = useState(false)
     const [tasks, setTasks] = useState([])
+    const [ nameBro, setNameBro ] = useState(props.name)
 
     const [ error, setError ] = useState('')
     const [ success, setSuccess ] = useState('')
@@ -19,7 +20,7 @@ export default function ChatBox(props) {
              
             <div key={doc.get('date')} className={styles.sectionMessage}>
                 
-                <div className={(props.name===doc.get('sender'))?`${styles.youSendIt}`:`${styles.youDontSendIt}`}>
+                <div className={(nameBro===doc.get('sender'))?`${styles.youSendIt}`:`${styles.youDontSendIt}`}>
 
                     <p>{doc.get('text')}</p>
 
@@ -38,13 +39,9 @@ export default function ChatBox(props) {
 
         try {
 
-            // console.log('message : ',document.getElementById('name').value)
-            // console.log('sender : ',props.name)
-            // console.log('date : ',Timestamp.now().toDate())
-
             await addDoc(collection(db, 'messages'), {
                 text: document.getElementById('name').value,
-                sender: props.name,
+                sender: nameBro,
                 date: Timestamp.now()
             })
 
@@ -120,7 +117,7 @@ export default function ChatBox(props) {
             
             <div className={styles.inputAndSendButton}>
 
-                <input className={styles.messageInput} type="text" id="name" name="name" required placeholder={'Type a message, '+props.name}/>
+                <input className={styles.messageInput} type="text" id="name" name="name" required placeholder={'Type a message, '+nameBro}/>
                 
                 <button className={ `${styles.sendingButton} ${theTimeout? `${styles.disabled}`:`` }` } onClick={() => {(document.getElementById('name').value), signMessage(document.getElementById('name').value)}} disabled={theTimeout}>Send</button>
 

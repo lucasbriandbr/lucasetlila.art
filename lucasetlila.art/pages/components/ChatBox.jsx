@@ -7,7 +7,7 @@ export default function ChatBox(props) {
 
     const [openAddModal, setOpenAddModal] = useState(false)
     const [tasks, setTasks] = useState([])
-    const [ nameBro, setNameBro ] = useState(props.name)
+    const [ nameBro, setNameBro ] = useState(props.name) 
 
     const [ error, setError ] = useState('')
     const [ success, setSuccess ] = useState('')

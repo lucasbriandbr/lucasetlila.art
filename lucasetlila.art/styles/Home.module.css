@@ -120,7 +120,7 @@
 
 .LucasInfos {
   display: flex;
-  flex-direction: row;
+  flex-direction: column;
   margin-bottom: 30px;
   width: 100%;
   max-width: 460px;
@@ -128,11 +128,13 @@
   position: absolute;
   bottom: 0px;
   background-color: black;
+  border-radius: 15px;
+  padding: 15px 15px 0px 15px;
 }
 
 .LilaInfos {
   display: flex;
-  flex-direction: row;
+  flex-direction: column;
   margin-bottom: 30px;
   width: 100%;
   max-width: 460px;
@@ -140,6 +142,8 @@
   position: absolute;
   bottom: 0px;
   background-color: black;
+  border-radius: 15px;
+  padding: 15px 15px 0px 15px;
 }
 
 .displayNone {

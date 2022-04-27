@@ -5,6 +5,10 @@ import { useState, useEffect } from 'react'
 import { users } from './constantes/users'
 import ChatBox from './components/ChatBox'
 
+//ajout des données de Lucas et Lila
+import { db } from './src/firebase'
+import {collection, addDoc, Timestamp, query, onSnapshot, updateDoc} from '@firebase/firestore'
+
 export default function Home() {
 
   const [Connected, setConnected] = useState(false)
@@ -17,6 +21,18 @@ export default function Home() {
   const [ error, setError ] = useState('')
   const [ success, setSuccess ] = useState('')
 
+  //états des informations de Mlle.Pelissier
+
+  const [ lilaAdress, setLilaAdress ] = useState('')
+  const [ lilaTel, setLilaTel ] = useState('')
+  const [ lilaLastConnexion, setLilaLastConnexion ] = useState()
+
+  //états des informations de Mr.Briand
+
+  const [ lucasAdress, setLucasAdress ] = useState('')
+  const [ lucasTel, setLucasTel ] = useState('')
+  const [ lucasLastConnexion, setLucasLastConnexion ] = useState()
+
   function openLucas() {
     setLucasState(!lucasState)
     setLilaState(false)
@@ -25,6 +41,32 @@ export default function Home() {
   function openLila() {
     setLilaState(!lilaState)
     setLucasState(false)
+  }
+
+  useEffect(()=>{
+    // const q = query(collection(db, 'lila'))
+    // onSnapshot(q, (querySnapshot) => {
+    //   querySnapshot.docs.map(doc => (
+    //     console.log(doc.get('adress')),
+    //     console.log(doc.get('tel')),
+    //     console.log(doc.get('lastconnexion'))
+    //   ))
+    // })
+  }, [])
+
+  async function updateLastConnexion(userToUpdate) {
+    if(userToUpdate==='Lila'){
+      const q = query(collection(db, 'lila'))
+    }else{
+      const q = query(collection(db, 'lucas'))
+    }
+    onSnapshot(q, (querySnapshot) => {
+      querySnapshot.docs.map(doc => (
+        console.log(doc.get('adress')),
+        console.log(doc.get('tel')),
+        console.log(doc.get('lastconnexion'))
+      ))
+    })
   }
   
   async function detectProvider() {
@@ -72,6 +114,8 @@ export default function Home() {
         setConnected(true)
         
         setUserName(user.name)
+
+        updateLastConnexion(user.name)
       
       } else {
 
@@ -103,14 +147,14 @@ export default function Home() {
           <>
 
             <div className={`${styles.LilaInfos} ${!lilaState?styles.displayNone:''}`}>
-
-              <p>Lila Section</p>
+              
+              <div><p>Infos Lila</p></div>
           
             </div>
             
             <div className={`${styles.LucasInfos} ${!lucasState?styles.displayNone:''}`}>
-
-              <p>Lucas Section</p>
+              
+              <div><p>Lucas Infos</p></div>
             
             </div>
         

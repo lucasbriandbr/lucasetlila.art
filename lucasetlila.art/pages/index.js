@@ -11,8 +11,21 @@ export default function Home() {
   const [Clicked, setClicked] = useState(false)
   const [UserName, setUserName] = useState('')
 
+  const [lucasState, setLucasState] = useState(false)
+  const [lilaState, setLilaState] = useState(false)
+
   const [ error, setError ] = useState('')
   const [ success, setSuccess ] = useState('')
+
+  function openLucas() {
+    setLucasState(!lucasState)
+    setLilaState(false)
+  }
+
+  function openLila() {
+    setLilaState(!lilaState)
+    setLucasState(false)
+  }
   
   async function detectProvider() {
     
@@ -86,15 +99,37 @@ export default function Home() {
 
       <div className={styles.container}>
         
-        <div className={styles.header}>
+        {Connected===true?
+          <>
 
-          {/* <h3>Pour se retrouver toujours</h3> */}
+            <div className={styles.LilaInfos}>
+          
+            </div>
+            
+            <div className={styles.LucasInfos}>
+            
+            </div>
+        
+            <div className={styles.divDeBoutons}>
+            
+              <p className={styles.boutonContact} onClick={()=>openLila()}>Lila, {lilaState.toString()}</p>
+
+              <p className={styles.boutonContact} onClick={()=>openLucas()}>Lucas, {lucasState.toString()}</p>
+            
+            </div>
+
+          </>
+        :
+          ''
+        }
+        
+        <div className={styles.header}>
           
           {Connected === true ?
 
             <div className={styles.messagerieWidget}>
 
-            {UserName !== "" ?<ChatBox name={UserName}/>:''}
+              {UserName !== "" ?<ChatBox name={UserName}/>:''}
 
             </div>
 

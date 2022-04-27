@@ -5,8 +5,9 @@
   background-color: black;
   color: white;
   padding: 30px 0px 30px 0px;
-  align-items: flex-start;
+  align-items: center;
   justify-content: center;
+  flex-direction: column;
 }
 
 .header {
@@ -19,7 +20,7 @@
   border: 1px solid white;
   border-radius: 15px;
   overflow: hidden;
-  flex-direction: column;
+  flex-direction: row;
 }
 
 @media (max-width: 460px) {
@@ -89,4 +90,38 @@
   font-size: 0.75em;
   opacity: 50%;
   color: lightgreen;
+}
+
+.boutonContact {
+  display: flex;
+  padding: 15px;
+  border: 1px solid white;
+  border-radius: 15px;
+  margin: 0px;
+  flex: 1;
+  text-align: center;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  user-select: none;
+}
+
+.divDeBoutons {
+  display: flex;
+  flex-direction: row;
+  margin-bottom: 30px;
+  width: 100%;
+  max-width: 460px;
+}
+
+.boutonContact:last-child {
+  margin-left: 30px;
+}
+
+.LucasInfos {
+
+}
+
+.LilaInfos {
+
 }

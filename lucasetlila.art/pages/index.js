@@ -169,7 +169,7 @@ export default function Home() {
 
               <p>{lucasTel}</p>
               
-              <p>{lucasLastConnexion}</p>
+              <p>Last connexion : {lucasLastConnexion}</p>
             
             </div>
         

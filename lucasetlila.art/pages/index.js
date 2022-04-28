@@ -154,12 +154,12 @@ export default function Home() {
     setLilaTel(telephone)
     setLilaAdress(adresse)
     
-    let washingtonRef = doc(db, "lucas", "1");
+    let washingtonRef = doc(db, "lila", "1");
     await updateDoc(washingtonRef, {
       adress: adresse
     });
     
-    washingtonRef = doc(db, "lucas", "1");
+    washingtonRef = doc(db, "lila", "1");
     await updateDoc(washingtonRef, {
       tel: telephone
     });

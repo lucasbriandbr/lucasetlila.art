@@ -130,6 +130,57 @@
   background-color: black;
   border-radius: 15px;
   padding: 15px 15px 0px 15px;
+  transition: all 0.5s ease-in-out;
+}
+
+.LucasInfos div {
+  display: flex;
+  margin-bottom: 15px;
+  width: 100%;
+  align-items: center;
+  justify-content: center;
+}
+
+.LucasInfos input {
+  display: flex;
+  padding: 15px;
+  width: 100%;
+  background-color: black;
+  border: 1px solid white;
+  border-radius: 15px;
+  color: white;
+}
+
+.LucasInfos input:active, .LucasInfos input:focus {
+  outline: none;
+  border: 1px solid white;
+}
+
+.LucasInfos div p {
+  margin: 0px;
+  display: flex;
+  padding: 15px;
+  width: 100%;
+  background-color: black;
+  border: 1px solid white;
+  border-radius: 15px;
+  color: white;
+  text-align: center;
+  justify-content: center;
+}
+
+.LucasInfos div button {
+  margin: 0px;
+  display: flex;
+  padding: 15px;
+  width: 100%;
+  background-color: black;
+  border: 1px solid white;
+  border-radius: 15px;
+  color: white;
+  text-align: center;
+  justify-content: center;
+  cursor: pointer;
 }
 
 .LilaInfos {
@@ -144,8 +195,60 @@
   background-color: black;
   border-radius: 15px;
   padding: 15px 15px 0px 15px;
+  transition: all 0.75s ease-in-out;
+}
+
+.LilaInfos div {
+  display: flex;
+  margin-bottom: 15px;
+  width: 100%;
+  align-items: center;
+  justify-content: center;
+}
+
+.LilaInfos input {
+  display: flex;
+  padding: 15px;
+  width: 100%;
+  background-color: black;
+  border: 1px solid white;
+  border-radius: 15px;
+  color: white;
+}
+
+.LilaInfos input:active, .LilaInfos input:focus {
+  outline: none;
+  border: 1px solid white;
+}
+
+.LilaInfos div p {
+  margin: 0px;
+  display: flex;
+  padding: 15px;
+  width: 100%;
+  background-color: black;
+  border: 1px solid white;
+  border-radius: 15px;
+  color: white;
+  text-align: center;
+  justify-content: center;
+}
+
+.LilaInfos div button {
+  margin: 0px;
+  display: flex;
+  padding: 15px;
+  width: 100%;
+  background-color: black;
+  border: 1px solid white;
+  border-radius: 15px;
+  color: white;
+  text-align: center;
+  justify-content: center;
+  cursor: pointer;
 }
 
 .displayNone {
-  display: none;
+  transform: translateY(500px);
+  transition: all 0.75s ease-in-out;
 }

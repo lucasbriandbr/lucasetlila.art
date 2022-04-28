@@ -36,11 +36,23 @@ export default function Home() {
   function openLucas() {
     setLucasState(!lucasState)
     setLilaState(false)
+    
+    document.getElementById('LucasTel').value=lucasTel
+    document.getElementById('LucasAdress').value=lucasAdress
+    
+    document.getElementById('LilaTel').value=lilaTel
+    document.getElementById('LilaAdress').value=lilaAdress
   }
 
   function openLila() {
     setLilaState(!lilaState)
     setLucasState(false)
+    
+    document.getElementById('LucasTel').value=lucasTel
+    document.getElementById('LucasAdress').value=lucasAdress
+    
+    document.getElementById('LilaTel').value=lilaTel
+    document.getElementById('LilaAdress').value=lilaAdress
   }
 
   useEffect(()=>{
@@ -134,6 +146,46 @@ export default function Home() {
 
   }
 
+  async function updateLilaInfos(adresse, telephone) {
+    
+    document.getElementById('LilaAdress').value=adresse
+    document.getElementById('LilaTel').value=telephone
+
+    setLilaTel(telephone)
+    setLilaAdress(adresse)
+    
+    let washingtonRef = doc(db, "lucas", "1");
+    await updateDoc(washingtonRef, {
+      adress: adresse
+    });
+    
+    washingtonRef = doc(db, "lucas", "1");
+    await updateDoc(washingtonRef, {
+      tel: telephone
+    });
+
+  }
+
+  async function updateLucasInfos(adresse, telephone) {
+    
+    document.getElementById('LucasTel').value=telephone
+    document.getElementById('LucasAdress').value=adresse
+    
+    setLucasTel(telephone)
+    setLucasAdress(adresse)
+    
+    let washingtonRef = doc(db, "lucas", "1");
+    await updateDoc(washingtonRef, {
+      adress: adresse
+    });
+    
+    washingtonRef = doc(db, "lucas", "1");
+    await updateDoc(washingtonRef, {
+      tel: telephone
+    });
+    
+  }
+
   return ( 
 
     <>
@@ -154,22 +206,42 @@ export default function Home() {
           <>
 
             <div className={`${styles.LilaInfos} ${!lilaState?styles.displayNone:''}`}>
-
-              <p>{lilaAdress}</p>
-
-              <p>{lilaTel}</p>
               
-              <p>{lilaLastConnexion}</p>
+              <div>
+                <input type="text" id="LilaAdress" name="LilaAdress" required placeholder={'Last known adress: '+lilaAdress}/>
+              </div>
+              
+              <div>
+                <input type="text" id="LilaTel" name="LilaTel" required placeholder={'Last phone number: '+lilaTel}/>
+              </div>
+
+              <div>
+                <p>Last connexion : {lilaLastConnexion}</p>
+              </div>
+
+              <div>
+                <button onClick={()=>(updateLilaInfos())}>Update</button>
+              </div>
           
             </div>
             
             <div className={`${styles.LucasInfos} ${!lucasState?styles.displayNone:''}`}>
-
-              <p>{lucasAdress}</p>
-
-              <p>{lucasTel}</p>
               
-              <p>Last connexion : {lucasLastConnexion}</p>
+              <div>
+                <input type="text" id="LucasAdress" name="LucasAdress" required placeholder={'Last known adress: '+lucasAdress}/>
+              </div>
+              
+              <div>
+                <input type="text" id="LucasTel" name="LucasTel" required placeholder={'Last phone number: '+lucasTel}/>
+              </div>
+
+              <div>
+                <p>Last connexion : {lucasLastConnexion}</p>
+              </div>
+
+              <div>
+                <button onClick={()=>(updateLucasInfos(document.getElementById('LucasAdress').value, document.getElementById('LucasTel').value))}>Update</button>
+              </div>
             
             </div>
         

@@ -148,8 +148,8 @@ export default function Home() {
 
   async function updateLilaInfos(adresse, telephone) {
     
-    document.getElementById('LilaAdress').value=telephone
-    document.getElementById('LilaTel').value=adresse
+    document.getElementById('LilaAdress').value=adresse
+    document.getElementById('LilaTel').value=telephone
 
     setLilaTel(telephone)
     setLilaAdress(adresse)

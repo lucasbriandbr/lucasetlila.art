@@ -148,19 +148,19 @@ export default function Home() {
 
   async function updateLilaInfos(adresse, telephone) {
     
-    document.getElementById('LilaAdress').value=adresse
-    document.getElementById('LilaTel').value=telephone
+    document.getElementById('LilaAdress').value=telephone
+    document.getElementById('LilaTel').value=adresse
 
     setLilaTel(telephone)
     setLilaAdress(adresse)
     
-    let washingtonRef = doc(db, "lila", "1");
-    await updateDoc(washingtonRef, {
+    let lilaUpdateAdress = doc(db, "lila", "1");
+    await updateDoc(lilaUpdateAdress, {
       adress: adresse
     });
     
-    washingtonRef = doc(db, "lila", "1");
-    await updateDoc(washingtonRef, {
+    let lilaUpdatePhone = doc(db, "lila", "1");
+    await updateDoc(lilaUpdatePhone, {
       tel: telephone
     });
 
@@ -220,7 +220,7 @@ export default function Home() {
               </div>
 
               <div>
-                <button onClick={()=>(updateLilaInfos())}>Update</button>
+                <button onClick={()=>(updateLilaInfos(document.getElementById('LilaAdress').value, document.getElementById('LilaTel').value))}>Update</button>
               </div>
           
             </div>
